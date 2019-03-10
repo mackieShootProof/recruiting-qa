@@ -1,0 +1,54 @@
+Selected Selenium Web Driver 
+TestNG
+Maven
+Page Object Model
+
+This would be the fastway to automate your site.  We could put this after your build is complete to quick smoke test.  
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import static org.junit.Assert.*;
+
+public class Home_GetStarted {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//ChromeDriver
+		System.setProperty("webdriver.chrome.driver","C:\\Windows\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		//Open ShootProof.com
+		driver.get("http://shootproof.com");
+		
+		//Part 1
+		//Locate the topmost "Get Started" button on the page
+		//Click the button
+			//Click Top Get Started button object "using xpath"
+				driver.findElement(By.xpath("//*[@id=\"navbar-button-trigger\"]/a[1]")).click();
+		//Explain why you chose the language and framework that you did
+			//Selenium automated testing is the most used format for automated testing.  It scales quickly and can be coded
+				//in many different languages. You can use selenium on its own or incorporate with tools like SauceLabs and Jenkins.
+		//If the code and approach is not obvious, describe the approach and decisions made		
+		
+		
+		//Part 2
+		//Assert that a "Get Started" button exists at the bottom of the page
+				String buttonText = driver.findElement(By.xpath("//*[@id=\"try-free\"]/div/p[2]/a")).getText();
+			    Assert.assertTrue("Get Started".equals(buttonText), "Get Started text is found" );				
+		//Click the button
+			    driver.findElement(By.xpath("//*[@id=\"try-free\"]/div/p[2]/a")).click();
+		//Explain why you chose the language and framework that you did (if different from part one)
+			    //Same as above
+		//If the code and approach is not obvious, describe the approach and decisions made				
+				
+
+		//Bottom Get Started button object "using xpath"			
+		if(driver.findElements(By.xpath("//*[@id=\"try-free\"]/div/p[2]/a")).size() != 0) {
+			System.out.println("Bottom Get Started button is found");
+		}else {
+			System.out.println("Bottom Get Started button not found");
+		}
+
+	}
+
+}
